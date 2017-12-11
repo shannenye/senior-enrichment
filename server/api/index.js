@@ -13,18 +13,19 @@ const Campus = db.model('campus');
 // You can put all routes in this file; HOWEVER, this file should almost be like a table of contents for the apiRouters you create
 
 apiRouter.get('/campuses', (req, res, next) => {
-	Campus.findAll()
+	Campus.findAll({include: {all : true}})
 	.then(allCampuses => res.send(allCampuses))
 	.catch(next)
 })
 
 apiRouter.get('/campuses/:id', (req, res, next) => {
-	Campus.findById(req.params.id, {include: {all:true}})
+	Campus.findById(req.params.id, {include: {all: true}})
 	.then(foundCampus => res.send(foundCampus))
 	.catch(next)
 })
 
 apiRouter.post('/campuses', (req, res, next) => {
+	// console.log("this is running: ", req)
 	Campus.create(req.body)
 	.then(campusCreated => res.send(campusCreated))
 	.catch(next)
@@ -44,13 +45,13 @@ apiRouter.delete('/campuses/:id', (req, res, next) => {
 })
 
 apiRouter.get('/students', (req, res, next) => {
-	Student.findAll({include: {all:true}})
+	Student.findAll({include: {all: true}})
 	.then(allStudents => res.send(allStudents))
 	.catch(next)
 })
 
 apiRouter.get('/students/:id', (req, res, next) => {
-	Student.findById(req.params.id)
+	Student.findById(req.params.id, {include: {all: true}})
 	.then(foundStudent => res.send(foundStudent))
 	.catch(next)
 })

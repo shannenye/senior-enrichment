@@ -16,4 +16,9 @@ const Campus = db.define('campus', {
     description: Sequelize.TEXT
 })
 
+Campus.beforeValidate((campusInstance, optionsObj) => {
+    if (!campusInstance.imageUrl) campusInstance.imageUrl = 'https://i.ytimg.com/vi/jfZVKBs45-U/maxresdefault.jpg'
+})
+
+
 module.exports = Campus

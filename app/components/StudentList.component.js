@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
-import { fetchStudents} from '../reducers/studentListReducer';
-
+import { fetchStudents, deleteStudent } from '../reducers/studentListReducer';
+import AddStudent from './AddStudent.component';
 
 class StudentList extends Component {
 
-  componentWillMount() {
+    constructor() {
+        super();
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+  componentDidMount() {
     this.props.loadStudents();
   }
 
+  handleDelete(id) {
+    this.props.removeStudent(id);
+  }
+
   render() {
-        // console.log(this.props.students[0])
+
         return (
             <div>
-                <h3 id='students-name'>Students</h3>
+                <h3 id="students-name">Students</h3>
+                <AddStudent />
                 <ul>
                 {
                     this.props.students.map(student => (
@@ -23,6 +33,13 @@ class StudentList extends Component {
                         <NavLink to={`/students/${student.id}`} >
                             <span> {student.name} </span>
                         </NavLink>
+
+                        <NavLink to={`/campuses/${student.campus.id}`}>
+                            <span> {student.campus.name} </span>
+                        </NavLink>
+
+                        <button onClick={() => (this.handleDelete(student.id))}>X</button>
+
                         </li>
                     ))
                 }
@@ -42,6 +59,9 @@ function mapDispatchToProps(dispatch) {
     return {
         loadStudents: function() {
             dispatch(fetchStudents())
+        },
+        removeStudent: function(id) {
+            dispatch(deleteStudent(id))
         }
     }
 }

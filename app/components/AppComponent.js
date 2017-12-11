@@ -10,24 +10,34 @@ export default class Main extends Component {
     render() {
         return (
             <div>
-                <h3 id='school-name'>Spacestack Academy</h3>
-                <NavLink to='/campuses'>
-                <button >
-                    <h3>Campuses</h3>
-                </button>
-                </NavLink>
+                <div className='homepageHeader'>
+                    <h3 id='school-name'>Spacestack Academy</h3>
 
-                <NavLink to='/students'>
-                <button>
-                    <h3>Students</h3>
-                </button>
-                </NavLink>
+                    <NavLink to='/campuses'>
+                    <button >
+                        <h3>Campuses</h3>
+                    </button>
+                    </NavLink>
+
+                    <NavLink to='/students'>
+                    <button>
+                        <h3>Students</h3>
+                    </button>
+                    </NavLink>
+
+                    <NavLink to='/'>
+                    <button>
+                        <h3>Home</h3>
+                    </button>
+                    </NavLink>
+                </div>
 
                 <Switch>
                     <Route exact path='/campuses' component={CampusList} />
-
+                    <Route path='/campuses/:id' component={SingleCampus} />
                     <Route exact path='/students' component={StudentList} />
                     <Route path='/students/:id' component={SingleStudent} />
+                    <Route exact path='/'/>
                 </Switch>
             </div>
         )

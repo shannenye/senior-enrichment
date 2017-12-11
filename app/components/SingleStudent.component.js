@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {fetchSingleStudent} from '../reducers/studentListReducer';
 
-class SingleStudent extends Component{
+class SingleStudent extends Component {
 
     componentDidMount() {
         this.props.loadSingleStudent(this.props.match.params.id);
@@ -11,16 +11,22 @@ class SingleStudent extends Component{
 
     render () {
         const person = this.props.singleStudent;
+
             return (
-                <ul>
-                    <li>{person.firstName}</li>
-                    <li>{person.lastName}</li>
-                    <li>{person.email}</li>
-                    <li>{person.gpa}</li>
-                    <li>
-                    <NavLink to={`/campuses/${person.campusId}`}>CAMPUS NAME SHOULD BE HERE</NavLink>
-                    </li>
-                </ul>
+                    <ul>
+                        { person.campus && (
+                            <div>
+                                <li>{person.firstName}</li>
+                                <li>{person.lastName}</li>
+                                <li>{person.email}</li>
+                                <li>{person.gpa}</li>
+                                <li>
+                                <NavLink to={`/campuses/${person.campusId}`}>{person.campus.name}</NavLink>
+                                </li>
+                            </div>
+                            )
+                        }
+                    </ul>
             )
         }
 }
