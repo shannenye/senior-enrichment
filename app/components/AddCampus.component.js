@@ -37,6 +37,7 @@ class AddCampus extends Component {
     render() {
         return (
             <form id="form1" onSubmit={this.handleSubmit}>
+                <div>
                 <label>Campus Name: </label>
                 <input
                 type="text"
@@ -45,7 +46,9 @@ class AddCampus extends Component {
                 value={this.state.name}
                 placeholder="Campus Name"
                 />
+                </div>
 
+                <div>
                 <label>Campus Picture: </label>
                 <input
                 type="text"
@@ -54,7 +57,9 @@ class AddCampus extends Component {
                 value={this.state.imageUrl}
                 placeholder="Image Link"
                 />
+                </div>
 
+                <div>
                 <label>Description: </label>
                 <input
                 type="text"
@@ -63,7 +68,7 @@ class AddCampus extends Component {
                 value={this.state.description}
                 placeholder="Description"
                 />
-
+                </div>
                 <input type="submit" value="Submit" />
             </form>
         )

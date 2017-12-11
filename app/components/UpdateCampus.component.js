@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchSingleCampus} from '../reducers/campuslistReducer';
+import {updateCampus} from '../reducers/campuslistReducer';
 
 class UpdateCampus extends Component {
     constructor() {
@@ -16,14 +16,16 @@ class UpdateCampus extends Component {
         this.handleDescription = this.handleDescription.bind(this);
     }
 
-    componentDidMount() {
-        this.props.loadSingleCampus(this.props.singleCampus)
-    }
-
     handleSubmit(event) {
+        // const campusToUpdate = this.props.singleCampus
         event.preventDefault();
-
-
+        let updatedCampus= {
+            name: (this.state.name) ? this.state.name : this.props.singleCampus.name,
+            imageUrl: (this.state.imageUrl) ? this.state.imageUrl : this.props.singleCampus.imageUrl,
+            description: (this.state.description) ? this.state.description : this.props.singleCampus.description
+        }
+        console.log("button clicked", updatedCampus, this.props.singleCampus.id)
+        this.props.updatedCampus(updatedCampus, this.props.singleCampus.id)
     }
 
     handleName(event) {
@@ -39,10 +41,9 @@ class UpdateCampus extends Component {
     }
 
     render() {
-        const campusToUpdate = this.props.singleCampus
         return (
-
             <form id="form1" onSubmit={this.handleSubmit}>
+            <div>
             <label>Edit Campus Name: </label>
             <input
             type="text"
@@ -51,7 +52,9 @@ class UpdateCampus extends Component {
             value={this.state.name}
             placeholder="Change Name"
             />
+            </div>
 
+            <div>
             <label>Change Campus Picture: </label>
             <input
             type="text"
@@ -60,7 +63,9 @@ class UpdateCampus extends Component {
             value={this.state.imageUrl}
             placeholder="New Image Link"
             />
+            </div>
 
+            <div>
             <label>Edit Description: </label>
             <input
             type="text"
@@ -69,24 +74,26 @@ class UpdateCampus extends Component {
             value={this.state.description}
             placeholder="Description"
             />
-
+            </div>
             <input type="submit" value="Submit" />
         </form>
+
         )
     }
 }
 
 function mapStateToProps(storeState) {
     return {
-        singleCampus: storeState.campuses.singleCampus
+        something: {}
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        loadSingleCampus: function(id) {
-            dispatch(fetchSingleCampus(id))
+        updatedCampus: function(info, id) {
+            dispatch(updateCampus(info, id))
         }
+
     }
 }
 

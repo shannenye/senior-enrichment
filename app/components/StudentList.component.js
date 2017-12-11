@@ -23,7 +23,7 @@ class StudentList extends Component {
 
         return (
             <div>
-                <h3 id="students-name">Students</h3>
+                <h4 id="students-name">Students</h4>
                 <AddStudent />
                 <ul>
                 {

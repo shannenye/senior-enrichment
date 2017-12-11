@@ -25,7 +25,7 @@ class SingleCampus extends Component {
             <div>
                 <h4>You are viewing all Students attending {campus.name}</h4>
                 <h5>Update Campus Details</h5>
-                <UpdateCampus />
+                <UpdateCampus singleCampus={this.props.singleCampus} />
                 <ul>
 
                     {
@@ -41,9 +41,7 @@ class SingleCampus extends Component {
                 </ul>
                 <h5>Details: {campus.description}</h5>
                 <img src={campus.imageUrl} />
-                <div>
-                    <button onClick={() => this.handleUpdate(campus.id)}>Update Campus Details</button>
-                </div>
+
             </div>
         )
     }
@@ -65,10 +63,10 @@ function mapDispatchToProps(dispatch) {
         },
         removeStudent: function(id) {
             dispatch(deleteStudent(id))
-        },
-        updatedCampus: function(id) {
-            dispatch(updateCampus(id))
         }
+        // updatedCampus: function(id) {
+        //     dispatch(updateCampus(id))
+        // }
     }
 }
 

@@ -55,6 +55,7 @@ class AddStudent extends Component {
         return (
             <form id="form2" onSubmit={this.handleSubmit}>
                 <h2>Add Student</h2>
+                <div>
                 <label>First Name: </label>
                 <input
                 type="text"
@@ -62,7 +63,9 @@ class AddStudent extends Component {
                 name="firstName"
                 placeholder="First Name"
                 />
+                </div>
 
+                <div>
                 <label>Last Name: </label>
                 <input
                 type="text"
@@ -70,7 +73,9 @@ class AddStudent extends Component {
                 name="lastName"
                 placeholder="Last Name"
                 />
+                </div>
 
+                <div>
                 <label>Email: </label>
                 <input
                 type="text"
@@ -78,7 +83,9 @@ class AddStudent extends Component {
                 name="email"
                 placeholder="email-name-here@random.com"
                 />
+                </div>
 
+                <div>
                 <label>GPA: </label>
                 <input
                 type="text"
@@ -86,7 +93,9 @@ class AddStudent extends Component {
                 name="gpa"
                 placeholder="GPA"
                 />
+                </div>
 
+                <div>
                 <label>Campus Name: </label>
                 <select
                 name="campus"
@@ -99,6 +108,7 @@ class AddStudent extends Component {
                     ))
                 }
                 </select>
+                </div>
                 <button type="submit">Submit</button>
             </form>
         )

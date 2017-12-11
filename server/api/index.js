@@ -32,8 +32,15 @@ apiRouter.post('/campuses', (req, res, next) => {
 })
 
 apiRouter.put('/campuses/:id', (req, res, next) => {
+	console.log("entering route to find req.body: ", req.body)
 	Campus.findById(req.params.id)
-	.then(campusToUpdate => campusToUpdate.update(req.body))
+	.then(campusToUpdate => {
+		return campusToUpdate.update(req.body)
+	})
+	.then(updatedValue => {
+		console.log("exiting route: ", updatedValue)
+		res.send(updatedValue)
+	})
 	.catch(next)
 })
 
