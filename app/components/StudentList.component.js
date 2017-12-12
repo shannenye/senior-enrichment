@@ -22,21 +22,24 @@ class StudentList extends Component {
   render() {
 
         return (
-            <div>
+            <div className="students-list-comp">
                 <h4 id="students-name">Students</h4>
-                <AddStudent />
                 <ul>
                 {
                     this.props.students.map(student => (
                         <li key={student.id}>
-                            <span> {student.id} </span>
                         <NavLink to={`/students/${student.id}`} >
-                            <span> {student.name} </span>
+                        <span> {student.name} </span>
                         </NavLink>
 
                         <NavLink to={`/campuses/${student.campus.id}`}>
                             <span> {student.campus.name} </span>
                         </NavLink>
+
+                        <span> {student.id} </span>
+
+
+
 
                         <button onClick={() => (this.handleDelete(student.id))}>X</button>
 
@@ -44,6 +47,7 @@ class StudentList extends Component {
                     ))
                 }
                 </ul>
+                <AddStudent />
             </div>
         )
     }

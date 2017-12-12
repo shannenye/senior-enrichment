@@ -3,6 +3,8 @@ const apiRouter = require('express').Router()
 const db = require('../db')
 const Student = db.model('student');
 const Campus = db.model('campus');
+// const Student = require('../db/models/students.model');
+// const Campus = require('../db/models/campuses.model');
 
 
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
@@ -25,7 +27,6 @@ apiRouter.get('/campuses/:id', (req, res, next) => {
 })
 
 apiRouter.post('/campuses', (req, res, next) => {
-	// console.log("this is running: ", req)
 	Campus.create(req.body)
 	.then(campusCreated => res.send(campusCreated))
 	.catch(next)
@@ -72,6 +73,7 @@ apiRouter.post('/students', (req, res, next) => {
 apiRouter.put('/students/:id', (req, res, next) => {
 	Student.findById(req.params.id)
 	.then(studentToUpdate => studentToUpdate.update(req.body))
+	.then(updatedStud => res.send(updatedStud))
 	.catch(next)
 })
 

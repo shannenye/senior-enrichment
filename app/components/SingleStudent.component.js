@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {fetchSingleStudent} from '../reducers/studentListReducer';
+import UpdateStudent from './UpdateStudent.component';
 
 class SingleStudent extends Component {
 
@@ -11,8 +12,11 @@ class SingleStudent extends Component {
 
     render () {
         const person = this.props.singleStudent;
-
+        console.log("this is person.camp: ", person.campus)
+        console.log("this is person: ", person)
             return (
+                <div>
+                    <h4>You are viewing {person.name}'s Profile</h4>
                     <ul>
                         { person.campus && (
                             <div>
@@ -27,6 +31,8 @@ class SingleStudent extends Component {
                             )
                         }
                     </ul>
+                    <UpdateStudent singleStudent={this.props.singleStudent} />
+                </div>
             )
         }
 }

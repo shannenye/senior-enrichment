@@ -10,29 +10,24 @@ class SingleCampus extends Component {
         this.props.loadSingleCampus(this.props.match.params.id);
     }
 
-    // handleUpdate(id) {
-    //     this.props.updatedCampus(id);
-    // }
-
     handleDelete(id) {
         this.props.removeStudent(id);
     }
 
     render() {
         const campus = this.props.singleCampus;
-        // console.log(campus.students)
         return (
             <div>
                 <h4>You are viewing all Students attending {campus.name}</h4>
-                <h5>Update Campus Details</h5>
-                <UpdateCampus singleCampus={this.props.singleCampus} />
                 <ul>
 
                     {
                         campus.students && campus.students.map(eachStudent => (
                             <div key={`${eachStudent.id}`}>
                                 <li>
-                                    <NavLink to={`/students/${eachStudent.id}`}>{eachStudent.name}</NavLink>
+                                    <NavLink to={`/students/${eachStudent.id}`}>
+                                    {eachStudent.name}
+                                    </NavLink>
                                     <button onClick={() => (this.handleDelete(eachStudent.id))}>X</button>
                                 </li>
                             </div>
@@ -41,14 +36,11 @@ class SingleCampus extends Component {
                 </ul>
                 <h5>Details: {campus.description}</h5>
                 <img src={campus.imageUrl} />
-
+                <UpdateCampus singleCampus={this.props.singleCampus} />
             </div>
         )
     }
 }
-
-
-// can edit a campus's info, including adding/removing a student to/from that campus
 
 function mapStateToProps(storeState) {
     return {
@@ -64,9 +56,6 @@ function mapDispatchToProps(dispatch) {
         removeStudent: function(id) {
             dispatch(deleteStudent(id))
         }
-        // updatedCampus: function(id) {
-        //     dispatch(updateCampus(id))
-        // }
     }
 }
 

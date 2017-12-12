@@ -17,14 +17,12 @@ class UpdateCampus extends Component {
     }
 
     handleSubmit(event) {
-        // const campusToUpdate = this.props.singleCampus
         event.preventDefault();
-        let updatedCampus= {
+        let updatedCampus = {
             name: (this.state.name) ? this.state.name : this.props.singleCampus.name,
             imageUrl: (this.state.imageUrl) ? this.state.imageUrl : this.props.singleCampus.imageUrl,
             description: (this.state.description) ? this.state.description : this.props.singleCampus.description
         }
-        console.log("button clicked", updatedCampus, this.props.singleCampus.id)
         this.props.updatedCampus(updatedCampus, this.props.singleCampus.id)
     }
 
@@ -44,6 +42,7 @@ class UpdateCampus extends Component {
         return (
             <form id="form1" onSubmit={this.handleSubmit}>
             <div>
+            <h2>Update Campus Profile</h2>
             <label>Edit Campus Name: </label>
             <input
             type="text"

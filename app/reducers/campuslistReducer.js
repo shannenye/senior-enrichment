@@ -1,4 +1,3 @@
-// import CampusList from '../components/CampusList.component';
 import axios from 'axios';
 
 const GOT_CAMPUSES = 'GOT_CAMPUSES';
@@ -53,20 +52,16 @@ export const deleteCampus = (id) => {
 
 export const postCampus = (campus) => {
     return function(dispatch) {
-        // console.log("this is campus: ", campus)
         axios.post(`/api/campuses`, campus)
         .then(res => res.data)
         .then(newCampus => dispatch(gotSingleCampus(newCampus)))
     }
 }
 export const updateCampus = (info, id) => {
-    console.log("entering thunky: ", id, info)
     return function(dispatch) {
         axios.put(`/api/campuses/${id}`, info)
-        .then(res => {
-            console.log("exiting thunk: ", res.data)
-            dispatch(updateSelectedCampus(res.data))
-        })
+        .then(res => res.data)
+        .then(updatedCamp => dispatch(updateSelectedCampus(updatedCamp)))
     }
 }
 

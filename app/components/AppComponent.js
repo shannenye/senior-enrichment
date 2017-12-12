@@ -13,6 +13,12 @@ export default class Main extends Component {
                 <div className='homepageHeader'>
                     <h3 id='school-name'>Spacestack Academy</h3>
 
+                    <NavLink to='/'>
+                    <button>
+                        <h3>Home</h3>
+                    </button>
+                    </NavLink>
+
                     <NavLink to='/campuses'>
                     <button >
                         <h3>Campuses</h3>
@@ -25,11 +31,6 @@ export default class Main extends Component {
                     </button>
                     </NavLink>
 
-                    <NavLink to='/'>
-                    <button>
-                        <h3>Home</h3>
-                    </button>
-                    </NavLink>
                 </div>
 
                 <Switch>

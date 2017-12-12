@@ -17,7 +17,8 @@ class CampusList extends Component {
     render() {
         return (
             <div>
-                <AddCampus />
+                <div>
+                </div>
                 <ol>
                 {
                     this.props.campuses.map(campus => (
@@ -32,6 +33,7 @@ class CampusList extends Component {
                     ))
                 }
                 </ol>
+                <AddCampus />
             </div>
         )
     }
